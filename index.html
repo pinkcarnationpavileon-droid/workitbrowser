@@ -1,1 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Work It Browser: Lift Your Connection</title>
+  <link rel="stylesheet" href="style-7.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&display=swap" rel="stylesheet">  
+</head>
+<body>
 
+  <main class="browser-window">
+    
+    <div class="tab-bar">
+      <div class="tab active" onclick="openTab(event, 'page1')">
+        <i class="fa-solid fa-dumbbell"></i> Main Gym
+      </div>
+      <div class="tab" onclick="openTab(event, 'page2')">
+        <i class="fa-solid fa-globe"></i> Neocities
+      </div>
+      <div class="tab" onclick="openTab(event, 'page3')">
+        <i class="fa-solid fa-video"></i> VloggerU
+      </div>
+      <div class="new-tab-btn" onclick="alert('Adding a new workout tab!')">+</div>
+    </div>
+
+    <article class="browser-header">
+      <article class="controls">
+        <button class="nav-btn" title="Back" onclick="goHome()">&#8592;</button>
+        <button class="nav-btn" title="Forward">&#8594;</button>
+        <button class="nav-btn" title="Refresh" onclick="refreshPage()">&#8635;</button>
+        <button class="nav-btn" title="Home" onclick="goHome()">&#8962;</button>
+      </article>
+      
+      <article class="address-bar">
+        <input type="text" id="url-display" value="sptth://search.WorkitBrowser.com/search?" readonly>
+      </article>
+    </article>
+
+    <article class="browser-content">
+      
+      <div id="page1" class="page active">
+        <article class="search-container">
+          <h1 class="brand-title"><i class="fa-solid fa-dumbbell"></i> Work It Browser</h1>
+          <p class="brand-tagline">Open(source) • Heavy(equipped) • Fast(results) • Private(no one but you)</p>
+          
+          <input type="text" class="mock-search-bar" placeholder="Lift your queries here..." id="main-search-input">
+
+          <article class="suggestions">
+            <div class="suggestion-chip" onclick="performSearch('question1')">🏋️ Who are you?</div>
+            <div class="suggestion-chip" onclick="performSearch('question2')">☀️ Weather Tomorrow</div>
+            <div class="suggestion-chip" onclick="performSearch('question3')">📰 Latest News</div>
+            <div class="suggestion-chip" onclick="performSearch('question4')">🍰 Tiramisu Recipe</div>
+          </article>
+        </article>
+      </div>
+
+      <div id="page2" class="page">
+        <h1>Neocities Site</h1>
+        <p>Welcome to my main web page domain!</p>
+      </div>
+
+      <div id="page3" class="page">
+        <h1>VloggerU Channel</h1>
+        <p>Check out my latest video logs and diary entries.</p>
+      </div>
+
+      <div id="page-results" class="page">
+        <div id="dynamic-content-area" class="custom-content"></div>
+      </div>
+
+    </article>
+
+    <article class="taskbar">
+      <div class="taskbar-icon"><i class="fa-solid fa-envelope"></i> Email</div>
+      <div class="taskbar-icon"><i class="fa-solid fa-store"></i> App Store</div>
+      <div class="taskbar-icon active"><i class="fa-solid fa-compact-disc"></i> WorkIt Browser</div>
+      <div class="taskbar-icon"><i class="fa-solid fa-folder"></i> Files</div>
+      <div class="taskbar-time" id="clock">02:45 AM</div>
+    </article>
+
+  </main>
+
+  <script>
+    function openTab(evt, pageName) {
+      var i, page, tabs;
+      
+      // Hide all pages
+      page = document.getElementsByClassName("page");
+      for (i = 0; i < page.length; i++) {
+        page[i].classList.remove("active");
+      }
+
+      // Deactivate all tab buttons
+      tabs = document.getElementsByClassName("tab");
+      for (i = 0; i < tabs.length; i++) {
+        tabs[i].classList.remove("active");
+      }
+
+      // Show current tab page and activate current tab
+      document.getElementById(pageName).classList.add("active");
+      evt.currentTarget.classList.add("active");
+
+      // Update URL display
+      const urls = { 
+        'page1': 'sptth://search.WorkitBrowser.com/search?', 
+        'page2': 'sptth://search.WorkitBrowser.com/Neocities', 
+        'page3': 'sptth://search.WorkitBrowser.com/VloggerU' 
+      };
+      document.getElementById('url-display').value = urls[pageName];
+    }
+
+    const searchDatabase = {
+      'question1': `
+        <h2>Who am I?</h2>
+        <p style="margin-top: 10px;">I am a <strong>gym-powered webmaster</strong> built entirely with HTML, CSS, and JavaScript.</p>
+        <p style="margin-top: 10px;">I don't connect to the external web, but I run smooth and lift heavy inside your browser!</p>
+        <button class="back-btn" onclick="goHome()">Back to Main Gym</button>
+      `,
+      'question2': `
+        <h2>Weather Forecast for Tomorrow</h2>
+        <div style="background: #121215; padding: 20px; border-radius: 8px; text-align: center; margin: 20px 0; border: 1px solid var(--gym-accent);">
+          <h1 style="margin: 0; color: var(--gym-accent);">72°F (22°C)</h1>
+          <p style="margin-top: 5px;">HOT with clear skies</p>
+          <p style="color: var(--gym-muted);">Humidity: 50% | Wind: 0 mph NW</p>
+        </div>
+        <p>Great weather for an outdoor cardio session!</p>
+        <button class="back-btn" onclick="goHome()">Back to Main Gym</button>
+      `,
+      'question3': `
+        <h2>Latest News</h2>
+        <p style="margin-top: 10px;">Scrapped the news idea, back to lifting sets!</p>
+        <button class="back-btn" onclick="goHome()">Back to Main Gym</button>
+      `,
+      'question4': `
+        <h2>Tiramisu Cake Recipe</h2>
+        <p style="margin-top: 10px;">High-protein cheat meal edition coming soon...</p>
+        <button class="back-btn" onclick="goHome()">Back to Main Gym</button>
+      `
+    };
+
+    function performSearch(queryKey) {
+      const contentArea = document.getElementById('dynamic-content-area');
+      const pageResults = document.getElementById('page-results');
+      const pageHome = document.getElementById('page1');
+      const urlDisplay = document.getElementById('url-display');
+
+      const content = searchDatabase[queryKey];
+
+      if (content) {
+        contentArea.innerHTML = content;
+        pageHome.classList.remove('active');
+        pageResults.classList.add('active');
+        urlDisplay.value = `workit://search/${queryKey}`;
+      } else {
+        contentArea.innerHTML = `<h2>Not Found</h2><p style="margin-top:10px;">No workout records found for "${queryKey}"</p><button class="back-btn" onclick="goHome()">Back</button>`;
+        pageHome.classList.remove('active');
+        pageResults.classList.add('active');
+      }
+    }
+
+    function goHome() {
+      document.getElementById('page-results').classList.remove('active');
+      document.getElementById('page1').classList.add('active');
+      document.getElementById('url-display').value = 'sptth://search.WorkitBrowser.com/search?';
+      document.getElementById('main-search-input').value = '';
+    }
+
+    function refreshPage() {
+      const currentActive = document.querySelector('.page.active');
+      currentActive.style.opacity = '0.3';
+      setTimeout(() => {
+        currentActive.style.opacity = '1';
+      }, 250);
+    }
+
+    document.getElementById('main-search-input').addEventListener('keypress', function (e) {
+      if (e.key === 'Enter') {
+        const val = this.value.toLowerCase().trim();
+        if (searchDatabase[val]) {
+          performSearch(val);
+        } else {
+          alert('Try clicking one of the workout suggestion chips below!');
+        }
+      }
+    });
+
+    // Simple Clock Update
+    function updateClock() {
+      const now = new Date();
+      document.getElementById('clock').innerText = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+  </script>
+</body>
+</html>
