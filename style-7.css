@@ -1,7 +1,7 @@
- :root {
-      --gym-dark: #1e1e24;
+  :root {
+      --gym-dark: rgba(30, 30, 36, 0.92);
       --gym-card: #2a2a32;
-      --gym-accent: #ccff00; /* Neon Gym Yellow/Lime */
+      --gym-accent: #ccff00;
       --gym-accent-hover: #b3e600;
       --gym-text: #f4f4f6;
       --gym-muted: #a0a0ab;
@@ -14,30 +14,36 @@
       padding: 0;
     }
 
+    /* Outer Desktop Background Image */
     body {
       font-family: "Gamja Flower", cursive, sans-serif;
-      background-color: #121215;
+      background-image: url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1920&q=80');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
       color: var(--gym-text);
       display: flex;
       justify-content: center;
       align-items: center;
       min-height: 100vh;
-      padding: 10px;
+      padding: 20px;
     }
 
     input, button, .tab, .suggestion-chip {
       font-family: inherit;
     }
 
-    /* Browser Box Frame */
+    /* Browser Window Container */
     .browser-window {
       width: 100%;
       max-width: 1100px;
-      height: 90vh;
+      height: 85vh;
       background-color: var(--gym-dark);
-      border: 3px solid var(--gym-border);
+      backdrop-filter: blur(8px);
+      border: 3px solid var(--gym-accent);
       border-radius: 12px;
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.7);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8);
       display: flex;
       flex-direction: column;
       overflow: hidden;
@@ -45,7 +51,7 @@
 
     /* Top Tab Bar */
     .tab-bar {
-      background: #151518;
+      background: rgba(21, 21, 24, 0.95);
       display: flex;
       align-items: flex-end;
       padding: 8px 10px 0;
@@ -78,7 +84,7 @@
     }
 
     .tab.active {
-      background: var(--gym-dark);
+      background: rgba(30, 30, 36, 0.9);
       color: var(--gym-accent);
       font-weight: bold;
       border-top: 2px solid var(--gym-accent);
@@ -100,7 +106,7 @@
 
     /* Browser Address Header */
     .browser-header {
-      background: #1a1a20;
+      background: rgba(26, 26, 32, 0.95);
       padding: 10px 15px;
       display: flex;
       align-items: center;
@@ -130,7 +136,7 @@
 
     .nav-btn:hover {
       background: var(--gym-accent);
-      color: var(--gym-dark);
+      color: #121215;
     }
 
     .address-bar {
@@ -142,7 +148,7 @@
       padding: 8px 16px;
       border-radius: 20px;
       border: 1px solid var(--gym-border);
-      background: #121215;
+      background: rgba(18, 18, 21, 0.9);
       color: var(--gym-accent);
       font-size: 16px;
       outline: none;
@@ -153,7 +159,7 @@
       flex: 1;
       overflow-y: auto;
       position: relative;
-      background: linear-gradient(180deg, #1e1e24 0%, #16161a 100%);
+      background: rgba(22, 22, 26, 0.85);
     }
 
     .page {
@@ -184,6 +190,7 @@
       margin-bottom: 8px;
       text-transform: uppercase;
       letter-spacing: 2px;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.5);
     }
 
     .brand-tagline {
@@ -202,7 +209,7 @@
       color: var(--gym-text);
       font-size: 18px;
       outline: none;
-      box-shadow: 0 4px 15px rgba(204, 255, 0, 0.15);
+      box-shadow: 0 4px 15px rgba(204, 255, 0, 0.2);
     }
 
     .mock-search-bar::placeholder {
@@ -230,12 +237,12 @@
 
     .suggestion-chip:hover {
       background: var(--gym-accent);
-      color: var(--gym-dark);
+      color: #121215;
       font-weight: bold;
       transform: translateY(-2px);
     }
 
-    /* Result Card Details */
+    /* Dynamic Result Card Details */
     .custom-content {
       background: var(--gym-card);
       border: 1px solid var(--gym-border);
@@ -248,7 +255,7 @@
     .back-btn {
       margin-top: 20px;
       background: var(--gym-accent);
-      color: var(--gym-dark);
+      color: #121215;
       border: none;
       padding: 8px 20px;
       border-radius: 20px;
@@ -261,37 +268,30 @@
       background: var(--gym-accent-hover);
     }
 
-    /* Bottom Taskbar */
+    /* ORIGINAL TASKBAR STYLING */
     .taskbar {
       height: 45px;
-      background: #101012;
+      background: #5C3042;
       display: flex;
-      padding: 0 15px;
+      padding: 0 10px;
       align-items: center;
       color: white;
-      border-top: 1px solid var(--gym-border);
+      font-size: 13px;
     }
 
     .taskbar-icon {
-      padding: 6px 16px;
-      margin-right: 6px;
+      padding: 8px 12px;
+      margin-right: 5px;
       cursor: pointer;
-      border-radius: 4px;
-      font-size: 16px;
-      color: var(--gym-muted);
-      display: flex;
-      align-items: center;
-      gap: 6px;
+      border-bottom: 2px solid transparent;
     }
 
     .taskbar-icon.active {
-      background: var(--gym-card);
-      color: var(--gym-accent);
-      border-bottom: 2px solid var(--gym-accent);
+      border-bottom: 2px solid #4a90e2;
+      background: rgba(255, 255, 255, 0.1);
     }
 
     .taskbar-time {
       margin-left: auto;
-      font-size: 16px;
-      color: var(--gym-accent);
+      font-size: 12px;
     }
