@@ -4,12 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Work It Browser: Lift Your Connection</title>
-  <link rel="stylesheet" href="style-7.css"
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&display=swap" rel="stylesheet">
-  
 </head>
 <body>
 
@@ -51,17 +49,16 @@
           <input type="text" class="mock-search-bar" placeholder="Lift your queries here..." id="main-search-input">
 
           <article class="suggestions">
-            <div class="suggestion-chip" onclick="performSearch('question1')">🏋️ Who are you?</div>
-            <div class="suggestion-chip" onclick="performSearch('question2')">☀️ Weather Tomorrow</div>
-            <div class="suggestion-chip" onclick="performSearch('question3')">📰 Latest News</div>
-            <div class="suggestion-chip" onclick="performSearch('question4')">🍰 Tiramisu Recipe</div>
+            <div class="suggestion-chip" onclick="performSearch('who are you?')">🏋️ who are you?</div>
+            <div class="suggestion-chip" onclick="performSearch('whats this site?')">🌐 whats this site?</div>
+            <div class="suggestion-chip" onclick="performSearch('latest updates?')">⚡ latest updates?</div>
+            <div class="suggestion-chip" onclick="performSearch('funfacts?')">💡 funfacts?</div>
           </article>
         </article>
       </div>
 
       <div id="page2" class="page">
-        <h1>Neocities Site</h1>
-        <p style="margin-top:10px;">Welcome to my main web page domain!</p>
+        <iframe src="https://neocities.org/browse" class="iframe-container" title="Neocities Browse"></iframe>
       </div>
 
       <div id="page3" class="page">
@@ -73,14 +70,6 @@
         <div id="dynamic-content-area" class="custom-content"></div>
       </div>
 
-    </article>
-
-    <article class="taskbar">
-      <div class="taskbar-icon">Email</div>
-      <div class="taskbar-icon">App store</div>
-      <div class="taskbar-icon active">Browser</div>
-      <div class="taskbar-icon">Files</div>
-      <div class="taskbar-time">2:45 AM</div>
     </article>
 
   </main>
@@ -104,38 +93,40 @@
 
       const urls = { 
         'page1': 'sptth://search.WorkitBrowser.com/search?', 
-        'page2': 'sptth://search.WorkitBrowser.com/Neocities', 
+        'page2': 'https://neocities.org/browse', 
         'page3': 'sptth://search.WorkitBrowser.com/VloggerU' 
       };
       document.getElementById('url-display').value = urls[pageName];
     }
 
     const searchDatabase = {
-      'question1': `
+      'who are you?': `
         <h2>Who am I?</h2>
         <p style="margin-top: 10px;">I am a <strong>gym-powered webmaster</strong> built entirely with HTML, CSS, and JavaScript.</p>
-        <p style="margin-top: 10px;">I don't connect to the external web, but I run smooth and lift heavy inside your browser!</p>
-        <button class="back-btn" onclick="goHome()">Back to Main Gym</button>
+        <p style="margin-top: 10px;">I run completely offline inside this custom browser frame!</p>
+        <button class="back-btn" onclick="goHome()">Back to Search</button>
       `,
-      'question2': `
-        <h2>Weather Forecast for Tomorrow</h2>
-        <div style="background: rgba(18,18,21,0.8); padding: 20px; border-radius: 8px; text-align: center; margin: 20px 0; border: 1px solid var(--gym-accent);">
-          <h1 style="margin: 0; color: var(--gym-accent);">72°F (22°C)</h1>
-          <p style="margin-top: 5px;">HOT with clear skies</p>
-          <p style="color: var(--gym-muted);">Humidity: 50% | Wind: 0 mph NW</p>
-        </div>
-        <p>Great weather for an outdoor cardio session!</p>
-        <button class="back-btn" onclick="goHome()">Back to Main Gym</button>
+      'whats this site?': `
+        <h2>What's this site?</h2>
+        <p style="margin-top: 10px;">This is <strong>Work It Browser</strong> — a custom simulated desktop browser designed with a gym theme, interactive tab navigation, and embedded web browsing capability.</p>
+        <button class="back-btn" onclick="goHome()">Back to Search</button>
       `,
-      'question3': `
-        <h2>Latest News</h2>
-        <p style="margin-top: 10px;">Scrapped the news idea, back to lifting sets!</p>
-        <button class="back-btn" onclick="goHome()">Back to Main Gym</button>
+      'latest updates?': `
+        <h2>Latest Updates</h2>
+        <ul style="margin-top: 10px; padding-left: 20px; line-height: 1.6;">
+          <li>Embedded active Neocities browse iframe directly into Tab 2.</li>
+          <li>Updated address bar to reflect external URLs when navigating pages.</li>
+          <li>Cleaned up taskbar for a dedicated browser application experience.</li>
+        </ul>
+        <button class="back-btn" onclick="goHome()">Back to Search</button>
       `,
-      'question4': `
-        <h2>Tiramisu Cake Recipe</h2>
-        <p style="margin-top: 10px;">High-protein cheat meal edition coming soon...</p>
-        <button class="back-btn" onclick="goHome()">Back to Main Gym</button>
+      'funfacts?': `
+        <h2>Fun Facts!</h2>
+        <ul style="margin-top: 10px; padding-left: 20px; line-height: 1.6;">
+          <li>Dumbbells were originally used in ancient Greece as jumping weights called 'halteres'.</li>
+          <li>Working out boosts brain endorphins and helps code execute 100% faster (probably)!</li>
+        </ul>
+        <button class="back-btn" onclick="goHome()">Back to Search</button>
       `
     };
 
@@ -151,7 +142,7 @@
         contentArea.innerHTML = content;
         pageHome.classList.remove('active');
         pageResults.classList.add('active');
-        urlDisplay.value = `workit://search/${queryKey}`;
+        urlDisplay.value = `workit://search/${encodeURIComponent(queryKey)}`;
       } else {
         contentArea.innerHTML = `<h2>Not Found</h2><p style="margin-top:10px;">No workout records found for "${queryKey}"</p><button class="back-btn" onclick="goHome()">Back</button>`;
         pageHome.classList.remove('active');
@@ -180,7 +171,7 @@
         if (searchDatabase[val]) {
           performSearch(val);
         } else {
-          alert('Try clicking one of the workout suggestion chips below!');
+          alert('Try clicking one of the suggested query chips below!');
         }
       }
     });
