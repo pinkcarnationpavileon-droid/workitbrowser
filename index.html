@@ -4,11 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Work It Browser: Lift Your Connection</title>
-  <link rel="stylesheet" href="style-7.css">
+  <link rel="stylesheet" href="style-7.css"
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&display=swap" rel="stylesheet">  
+  <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&display=swap" rel="stylesheet">
+  
 </head>
 <body>
 
@@ -60,12 +61,12 @@
 
       <div id="page2" class="page">
         <h1>Neocities Site</h1>
-        <p>Welcome to my main web page domain!</p>
+        <p style="margin-top:10px;">Welcome to my main web page domain!</p>
       </div>
 
       <div id="page3" class="page">
         <h1>VloggerU Channel</h1>
-        <p>Check out my latest video logs and diary entries.</p>
+        <p style="margin-top:10px;">Check out my latest video logs and diary entries.</p>
       </div>
 
       <div id="page-results" class="page">
@@ -75,11 +76,11 @@
     </article>
 
     <article class="taskbar">
-      <div class="taskbar-icon"><i class="fa-solid fa-envelope"></i> Email</div>
-      <div class="taskbar-icon"><i class="fa-solid fa-store"></i> App Store</div>
-      <div class="taskbar-icon active"><i class="fa-solid fa-compact-disc"></i> WorkIt Browser</div>
-      <div class="taskbar-icon"><i class="fa-solid fa-folder"></i> Files</div>
-      <div class="taskbar-time" id="clock">02:45 AM</div>
+      <div class="taskbar-icon">Email</div>
+      <div class="taskbar-icon">App store</div>
+      <div class="taskbar-icon active">Browser</div>
+      <div class="taskbar-icon">Files</div>
+      <div class="taskbar-time">2:45 AM</div>
     </article>
 
   </main>
@@ -88,23 +89,19 @@
     function openTab(evt, pageName) {
       var i, page, tabs;
       
-      // Hide all pages
       page = document.getElementsByClassName("page");
       for (i = 0; i < page.length; i++) {
         page[i].classList.remove("active");
       }
 
-      // Deactivate all tab buttons
       tabs = document.getElementsByClassName("tab");
       for (i = 0; i < tabs.length; i++) {
         tabs[i].classList.remove("active");
       }
 
-      // Show current tab page and activate current tab
       document.getElementById(pageName).classList.add("active");
       evt.currentTarget.classList.add("active");
 
-      // Update URL display
       const urls = { 
         'page1': 'sptth://search.WorkitBrowser.com/search?', 
         'page2': 'sptth://search.WorkitBrowser.com/Neocities', 
@@ -122,7 +119,7 @@
       `,
       'question2': `
         <h2>Weather Forecast for Tomorrow</h2>
-        <div style="background: #121215; padding: 20px; border-radius: 8px; text-align: center; margin: 20px 0; border: 1px solid var(--gym-accent);">
+        <div style="background: rgba(18,18,21,0.8); padding: 20px; border-radius: 8px; text-align: center; margin: 20px 0; border: 1px solid var(--gym-accent);">
           <h1 style="margin: 0; color: var(--gym-accent);">72°F (22°C)</h1>
           <p style="margin-top: 5px;">HOT with clear skies</p>
           <p style="color: var(--gym-muted);">Humidity: 50% | Wind: 0 mph NW</p>
@@ -187,14 +184,6 @@
         }
       }
     });
-
-    // Simple Clock Update
-    function updateClock() {
-      const now = new Date();
-      document.getElementById('clock').innerText = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-    }
-    setInterval(updateClock, 1000);
-    updateClock();
   </script>
 </body>
 </html>
