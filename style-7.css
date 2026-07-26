@@ -1,1 +1,297 @@
+ :root {
+      --gym-dark: #1e1e24;
+      --gym-card: #2a2a32;
+      --gym-accent: #ccff00; /* Neon Gym Yellow/Lime */
+      --gym-accent-hover: #b3e600;
+      --gym-text: #f4f4f6;
+      --gym-muted: #a0a0ab;
+      --gym-border: #3f3f4c;
+    }
 
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Gamja Flower", cursive, sans-serif;
+      background-color: #121215;
+      color: var(--gym-text);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 10px;
+    }
+
+    input, button, .tab, .suggestion-chip {
+      font-family: inherit;
+    }
+
+    /* Browser Box Frame */
+    .browser-window {
+      width: 100%;
+      max-width: 1100px;
+      height: 90vh;
+      background-color: var(--gym-dark);
+      border: 3px solid var(--gym-border);
+      border-radius: 12px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.7);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    /* Top Tab Bar */
+    .tab-bar {
+      background: #151518;
+      display: flex;
+      align-items: flex-end;
+      padding: 8px 10px 0;
+      gap: 6px;
+      border-bottom: 2px solid var(--gym-border);
+    }
+
+    .tab {
+      background: #25252d;
+      color: var(--gym-muted);
+      padding: 8px 18px;
+      border-radius: 8px 8px 0 0;
+      font-size: 16px;
+      cursor: pointer;
+      max-width: 200px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      border: 1px solid var(--gym-border);
+      border-bottom: none;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .tab:hover {
+      background: #2f2f3a;
+      color: var(--gym-text);
+    }
+
+    .tab.active {
+      background: var(--gym-dark);
+      color: var(--gym-accent);
+      font-weight: bold;
+      border-top: 2px solid var(--gym-accent);
+    }
+
+    .new-tab-btn {
+      padding: 6px 12px;
+      cursor: pointer;
+      font-weight: bold;
+      color: var(--gym-accent);
+      font-size: 18px;
+      margin-bottom: 4px;
+      border-radius: 4px;
+    }
+
+    .new-tab-btn:hover {
+      background: var(--gym-card);
+    }
+
+    /* Browser Address Header */
+    .browser-header {
+      background: #1a1a20;
+      padding: 10px 15px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-bottom: 2px solid var(--gym-border);
+    }
+
+    .controls {
+      display: flex;
+      gap: 6px;
+    }
+
+    .nav-btn {
+      background: var(--gym-card);
+      border: 1px solid var(--gym-border);
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      cursor: pointer;
+      color: var(--gym-accent);
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+
+    .nav-btn:hover {
+      background: var(--gym-accent);
+      color: var(--gym-dark);
+    }
+
+    .address-bar {
+      flex-grow: 1;
+    }
+
+    .address-bar input {
+      width: 100%;
+      padding: 8px 16px;
+      border-radius: 20px;
+      border: 1px solid var(--gym-border);
+      background: #121215;
+      color: var(--gym-accent);
+      font-size: 16px;
+      outline: none;
+    }
+
+    /* Content Area */
+    .browser-content {
+      flex: 1;
+      overflow-y: auto;
+      position: relative;
+      background: linear-gradient(180deg, #1e1e24 0%, #16161a 100%);
+    }
+
+    .page {
+      display: none;
+      width: 100%;
+      height: 100%;
+      padding: 30px;
+      box-sizing: border-box;
+    }
+
+    .page.active { 
+      display: block;
+    }
+
+    /* Home View Styling */
+    .search-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 80%;
+      text-align: center;
+    }
+
+    .brand-title {
+      font-size: 42px;
+      color: var(--gym-accent);
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .brand-tagline {
+      color: var(--gym-muted);
+      font-size: 20px;
+      margin-bottom: 25px;
+    }
+
+    .mock-search-bar {
+      width: 100%;
+      max-width: 550px;
+      padding: 14px 22px;
+      border-radius: 30px;
+      border: 2px solid var(--gym-accent);
+      background: var(--gym-card);
+      color: var(--gym-text);
+      font-size: 18px;
+      outline: none;
+      box-shadow: 0 4px 15px rgba(204, 255, 0, 0.15);
+    }
+
+    .mock-search-bar::placeholder {
+      color: var(--gym-muted);
+    }
+
+    .suggestions {
+      margin-top: 25px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .suggestion-chip {
+      background: var(--gym-card);
+      border: 1px solid var(--gym-border);
+      padding: 10px 18px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 16px;
+      color: var(--gym-text);
+      transition: all 0.2s;
+    }
+
+    .suggestion-chip:hover {
+      background: var(--gym-accent);
+      color: var(--gym-dark);
+      font-weight: bold;
+      transform: translateY(-2px);
+    }
+
+    /* Result Card Details */
+    .custom-content {
+      background: var(--gym-card);
+      border: 1px solid var(--gym-border);
+      border-radius: 12px;
+      padding: 25px;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .back-btn {
+      margin-top: 20px;
+      background: var(--gym-accent);
+      color: var(--gym-dark);
+      border: none;
+      padding: 8px 20px;
+      border-radius: 20px;
+      font-weight: bold;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .back-btn:hover {
+      background: var(--gym-accent-hover);
+    }
+
+    /* Bottom Taskbar */
+    .taskbar {
+      height: 45px;
+      background: #101012;
+      display: flex;
+      padding: 0 15px;
+      align-items: center;
+      color: white;
+      border-top: 1px solid var(--gym-border);
+    }
+
+    .taskbar-icon {
+      padding: 6px 16px;
+      margin-right: 6px;
+      cursor: pointer;
+      border-radius: 4px;
+      font-size: 16px;
+      color: var(--gym-muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .taskbar-icon.active {
+      background: var(--gym-card);
+      color: var(--gym-accent);
+      border-bottom: 2px solid var(--gym-accent);
+    }
+
+    .taskbar-time {
+      margin-left: auto;
+      font-size: 16px;
+      color: var(--gym-accent);
+    }
