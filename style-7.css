@@ -1,4 +1,4 @@
-    :root {
+       :root {
       --gym-dark: rgba(30, 30, 36, 0.92);
       --gym-card: #2a2a32;
       --gym-accent: #ccff00;
@@ -49,6 +49,7 @@
       display: flex;
       flex-direction: column;
       overflow: hidden;
+      position: relative;
     }
 
     /* Top Tab Bar */
@@ -276,8 +277,6 @@
       background: var(--gym-pink-hover);
     }
 
-    /* CUSTOM DYNAMIC DESIGNS FOR EACH QUERY */
-
     /* 1. ID CARD DESIGN */
     .id-card-wrapper {
       max-width: 480px;
@@ -336,9 +335,9 @@
       color: var(--gym-pink);
     }
 
-    /* 2. BULLETIN BOARD DESIGN */
+    /* 2. BULLETIN BOARD DESIGN - VERTICAL LAYOUT */
     .bulletin-board {
-      max-width: 600px;
+      max-width: 500px;
       margin: 20px auto;
       background: #2b1f1a;
       border: 4px solid #6e473b;
@@ -351,24 +350,23 @@
     .bulletin-title {
       color: var(--gym-pink);
       font-size: 26px;
-      margin-bottom: 15px;
+      margin-bottom: 20px;
       text-shadow: 0 0 8px var(--gym-pink-glow);
+      text-align: center;
     }
 
-    .sticky-notes-grid {
+    .sticky-notes-vertical {
       display: flex;
-      gap: 15px;
-      flex-wrap: wrap;
-      justify-content: center;
+      flex-direction: column; /* Vertical stack */
+      gap: 18px;
     }
 
     .sticky-note {
       background: #38242e;
       border: 2px solid var(--gym-pink);
       color: #ffc2e0;
-      padding: 15px;
-      width: 45%;
-      border-radius: 4px;
+      padding: 16px;
+      border-radius: 6px;
       text-align: left;
       font-size: 15px;
       position: relative;
@@ -379,46 +377,112 @@
       content: '📌';
       position: absolute;
       top: -12px;
-      left: 50%;
-      transform: translateX(-50%);
+      left: 20px;
       font-size: 16px;
     }
 
-    /* 3. MESSAGES / CHAT DESIGN */
-    .chat-wrapper {
-      max-width: 500px;
-      margin: 20px auto;
-      background: #18181f;
-      border: 2px solid var(--gym-pink);
-      border-radius: 16px;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      box-shadow: 0 0 15px var(--gym-pink-glow);
+    /* 3. MESSAGES MODAL POPUP DESIGN */
+    .modal-overlay {
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(5px);
+      z-index: 100;
+      justify-content: center;
+      align-items: center;
     }
 
-    .chat-header {
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .chat-modal {
+      width: 90%;
+      max-width: 420px;
+      background: #181820;
+      border: 3px solid var(--gym-pink);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 0 25px var(--gym-pink-glow), 0 10px 30px rgba(0,0,0,0.8);
+      animation: modalPop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    @keyframes modalPop {
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .chat-app-header {
+      background: #251621;
+      border-bottom: 2px solid var(--gym-pink);
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .chat-user-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .chat-avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--gym-pink);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       font-size: 18px;
-      color: var(--gym-pink);
-      border-bottom: 1px solid var(--gym-border);
-      padding-bottom: 8px;
-      text-align: center;
+    }
+
+    .chat-username {
+      font-size: 18px;
+      color: #ffffff;
       font-weight: bold;
+    }
+
+    .chat-status {
+      font-size: 12px;
+      color: var(--gym-accent);
+    }
+
+    .close-modal-btn {
+      background: transparent;
+      border: none;
+      color: #ffb3d9;
+      font-size: 22px;
+      cursor: pointer;
+    }
+
+    .chat-app-body {
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-height: 360px;
+      overflow-y: auto;
     }
 
     .chat-bubble {
       max-width: 80%;
-      padding: 12px 16px;
+      padding: 10px 15px;
       border-radius: 18px;
-      font-size: 16px;
-      text-align: left;
+      font-size: 15px;
       line-height: 1.4;
+      text-align: left;
     }
 
     .chat-incoming {
       background: #2b2b38;
-      color: var(--gym-text);
+      color: #ffffff;
       border-bottom-left-radius: 4px;
       align-self: flex-start;
       border: 1px solid var(--gym-border);
@@ -432,7 +496,24 @@
       font-weight: bold;
     }
 
-    /* GENERAL SITE INFO CARD */
+    .chat-app-footer {
+      padding: 12px;
+      background: #121218;
+      border-top: 1px solid var(--gym-border);
+      display: flex;
+      gap: 8px;
+    }
+
+    .chat-input-fake {
+      flex: 1;
+      background: #23232d;
+      border: 1px solid var(--gym-border);
+      border-radius: 20px;
+      padding: 8px 15px;
+      color: var(--gym-muted);
+      font-size: 14px;
+    }
+
     .info-card {
       max-width: 550px;
       margin: 20px auto;
