@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Work It Browser: Lift Your Connection</title>
-  <link rel="stylesheet" href="style-7.css">   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,13 +14,13 @@
   <main class="browser-window">
     
     <div class="tab-bar">
-      <div class="tab active" onclick="openTab(event, 'page1')">
+      <div class="tab active" id="tab-page1" onclick="openTab(event, 'page1')">
         <i class="fa-solid fa-dumbbell"></i> Main Gym
       </div>
-      <div class="tab" onclick="openTab(event, 'page2')">
+      <div class="tab" id="tab-page2" onclick="openTab(event, 'page2')">
         <i class="fa-solid fa-dumbbell"></i> Neocities
       </div>
-      <div class="tab" onclick="openTab(event, 'page3')">
+      <div class="tab" id="tab-page3" onclick="openTab(event, 'page3')">
         <i class="fa-solid fa-dumbbell"></i> how to render fingers and palms?
       </div>
       <div class="new-tab-btn" onclick="alert('Adding a new tab!')">+</div>
@@ -87,7 +86,7 @@
           <button class="close-modal-btn" onclick="closeChatModal()">&times;</button>
         </div>
         
-        <div class="chat-app-body">
+        <div class="chat-app-body" id="chat-messages-body">
           <div class="chat-system-tag">💖 Group created by Maya 💖</div>
 
           <div class="msg-group incoming">
@@ -127,8 +126,8 @@
         </div>
 
         <div class="chat-app-footer">
-          <div class="chat-input-fake">Send a message... 💕</div>
-          <button class="send-btn"><i class="fa-solid fa-paper-plane"></i></button>
+          <input type="text" class="chat-input-field" id="chat-user-msg" placeholder="Send a message... 💕">
+          <button class="send-btn" onclick="sendChatMessage()"><i class="fa-solid fa-paper-plane"></i></button>
         </div>
 
       </div>
@@ -151,7 +150,15 @@
       }
 
       document.getElementById(pageName).classList.add("active");
-      evt.currentTarget.classList.add("active");
+      
+      if (evt && evt.currentTarget) {
+        evt.currentTarget.classList.add("active");
+      } else {
+        const tabMap = { 'page1': 'tab-page1', 'page2': 'tab-page2', 'page3': 'tab-page3' };
+        if (tabMap[pageName]) {
+          document.getElementById(tabMap[pageName]).classList.add("active");
+        }
+      }
 
       const urls = { 
         'page1': 'sptth://search.WorkitBrowser.com/search?', 
@@ -242,10 +249,40 @@
       document.getElementById('chat-modal-overlay').classList.remove('active');
     }
 
+    function sendChatMessage() {
+      const input = document.getElementById('chat-user-msg');
+      const text = input.value.trim();
+      
+      if (!text) return;
+
+      const chatBody = document.getElementById('chat-messages-body');
+      
+      const newMsgGroup = document.createElement('div');
+      newMsgGroup.className = 'msg-group outgoing';
+      newMsgGroup.innerHTML = `
+        <span class="sender-name">You</span>
+        <div class="chat-bubble chat-outgoing">${text}</div>
+      `;
+      
+      chatBody.appendChild(newMsgGroup);
+      input.value = '';
+      chatBody.scrollTop = chatBody.scrollHeight;
+
+      setTimeout(() => {
+        closeChatModal();
+        openTab(null, 'page3');
+      }, 500);
+    }
+
+    document.getElementById('chat-user-msg').addEventListener('keypress', function (e) {
+      if (e.key === 'Enter') {
+        sendChatMessage();
+      }
+    });
+
     function goHome() {
       document.getElementById('page-results').classList.remove('active');
-      document.getElementById('page1').classList.add('active');
-      document.getElementById('url-display').value = 'sptth://search.WorkitBrowser.com/search?';
+      openTab(null, 'page1');
       document.getElementById('main-search-input').value = '';
     }
 
