@@ -9,7 +9,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Courier+Prime:wght@700&display=swap" rel="stylesheet">
-  
 </head>
 <body>
 
@@ -75,28 +74,63 @@
     </article>
 
     <div class="modal-overlay" id="chat-modal-overlay">
-      <div class="chat-modal">
+      <div class="slumber-chat-app">
+        
         <div class="chat-app-header">
           <div class="chat-user-info">
-            <div class="chat-avatar"><i class="fa-solid fa-robot"></i></div>
+            <div class="chat-avatar host-avatar">👑</div>
             <div>
-              <div class="chat-username">Messenger</div>
-              <div class="chat-status">Active now</div>
+              <div class="chat-username">🎀 Maya's Slumber Bash '26 🎀</div>
+              <div class="chat-status"><i class="fa-solid fa-heart"></i> 4 Besties Active</div>
             </div>
           </div>
           <button class="close-modal-btn" onclick="closeChatModal()">&times;</button>
         </div>
         
         <div class="chat-app-body">
-          <div class="chat-incoming">Hey! Got any cool fun facts for me today? 🤔</div>
-          <div class="chat-outgoing">Sure! Dumbbells were originally used in ancient Greece as jumping weights called 'halteres'! 🏋️‍♂️</div>
-          <div class="chat-incoming">Whoa, really? Give me another one!</div>
-          <div class="chat-outgoing">Working out releases endorphins that make your code compile 100% faster! ⚡</div>
+          <div class="chat-system-tag">💖 Group created by Maya 💖</div>
+
+          <div class="msg-group incoming">
+            <span class="sender-name">Maya (Host) 👑</span>
+            <div class="chat-bubble chat-incoming">
+              OMG girls!! Are we all ready for Friday night?? Don't forget your cutest PJs! 💖🛌
+            </div>
+          </div>
+
+          <div class="msg-group incoming">
+            <span class="sender-name">Chloe ✨</span>
+            <div class="chat-bubble chat-incoming">
+              YESS! I'm bringing the sheet masks and extra pink popcorn! 🍿💅
+            </div>
+          </div>
+
+          <div class="msg-group incoming">
+            <span class="sender-name">Maya (Host) 👑</span>
+            <div class="chat-bubble chat-incoming">
+              Yum!! I set up the movie projector and giant floor pillows in my room already! 🎬✨
+            </div>
+          </div>
+
+          <div class="msg-group outgoing">
+            <span class="sender-name">You</span>
+            <div class="chat-bubble chat-outgoing">
+              Count me in! Should I bring the karaoke microphone or the board games? 🎤🎲
+            </div>
+          </div>
+
+          <div class="msg-group incoming">
+            <span class="sender-name">Sarah 🌸</span>
+            <div class="chat-bubble chat-incoming">
+              BRING BOTH!! It's gonna be the best sleepover ever! 💕🥳
+            </div>
+          </div>
         </div>
 
         <div class="chat-app-footer">
-          <div class="chat-input-fake">Type a message...</div>
+          <div class="chat-input-fake">Send a message... 💕</div>
+          <button class="send-btn"><i class="fa-solid fa-paper-plane"></i></button>
         </div>
+
       </div>
     </div>
 
@@ -160,7 +194,7 @@
           <h2 class="bulletin-title">📌 LATEST UPDATES</h2>
           <div class="sticky-notes-vertical">
             <div class="sticky-note">
-              <strong>Chat Modal Overlay:</strong> 'Fun facts' now opens as a floating chat app popup modal!
+              <strong>Chat Modal Overlay:</strong> 'Messenger' chip now slides up a cute slumber party group chat!
             </div>
             <div class="sticky-note">
               <strong>Vertical Layout:</strong> Updates board rearranged into a clean vertical stack feed.
