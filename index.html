@@ -4,11 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Work It Browser: Lift Your Connection</title>
-  <link rel="stylesheet" href="style-7.css">
+  <link rel="stylesheet" href="style-7.css">   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Courier+Prime:wght@700&display=swap" rel="stylesheet">
+  
 </head>
 <body>
 
@@ -73,6 +74,32 @@
 
     </article>
 
+    <div class="modal-overlay" id="chat-modal-overlay">
+      <div class="chat-modal">
+        <div class="chat-app-header">
+          <div class="chat-user-info">
+            <div class="chat-avatar"><i class="fa-solid fa-robot"></i></div>
+            <div>
+              <div class="chat-username">Gym Bot</div>
+              <div class="chat-status">● Active now</div>
+            </div>
+          </div>
+          <button class="close-modal-btn" onclick="closeChatModal()">&times;</button>
+        </div>
+        
+        <div class="chat-app-body">
+          <div class="chat-incoming">Hey! Got any cool fun facts for me today? 🤔</div>
+          <div class="chat-outgoing">Sure! Dumbbells were originally used in ancient Greece as jumping weights called 'halteres'! 🏋️‍♂️</div>
+          <div class="chat-incoming">Whoa, really? Give me another one!</div>
+          <div class="chat-outgoing">Working out releases endorphins that make your code compile 100% faster! ⚡</div>
+        </div>
+
+        <div class="chat-app-footer">
+          <div class="chat-input-fake">Type a message...</div>
+        </div>
+      </div>
+    </div>
+
   </main>
 
   <script>
@@ -130,38 +157,17 @@
       `,
       'latest updates?': `
         <div class="bulletin-board">
-          <h2 class="bulletin-title">📌 LATEST UPDATES BOARD</h2>
-          <div class="sticky-notes-grid">
+          <h2 class="bulletin-title">📌 LATEST UPDATES</h2>
+          <div class="sticky-notes-vertical">
             <div class="sticky-note">
-              <strong>Pink Neon Theme:</strong> Inquiry query chips updated with glowing pink styles.
+              <strong>Chat Modal Overlay:</strong> 'Fun facts' now opens as a floating chat app popup modal!
             </div>
             <div class="sticky-note">
-              <strong>Interactive ID:</strong> Built 'Who Are You' chip formatted as a digital ID Badge.
+              <strong>Vertical Layout:</strong> Updates board rearranged into a clean vertical stack feed.
             </div>
             <div class="sticky-note">
-              <strong>Chat Bubbles:</strong> Fun facts transformed into a conversation thread!
+              <strong>Pink Neon Theme:</strong> Glowing query buttons styled with neon pink accents.
             </div>
-            <div class="sticky-note">
-              <strong>Iframe Active:</strong> Neocities tab live and frame-ready.
-            </div>
-          </div>
-          <button class="back-btn" onclick="goHome()">Back to Search</button>
-        </div>
-      `,
-      'funfacts?': `
-        <div class="chat-wrapper">
-          <div class="chat-header">💬 Chat with Gym Bot</div>
-          <div class="chat-incoming">
-            Hey! Got any cool fun facts for me? 🤔
-          </div>
-          <div class="chat-outgoing">
-            Sure! Dumbbells were originally used in ancient Greece as jumping weights called 'halteres'! 🏋️‍♂️
-          </div>
-          <div class="chat-incoming">
-            Whoa, really? Give me another!
-          </div>
-          <div class="chat-outgoing">
-            Doing workouts releases endorphins that increase coding productivity by at least 100%! ⚡
           </div>
           <button class="back-btn" onclick="goHome()">Back to Search</button>
         </div>
@@ -169,6 +175,11 @@
     };
 
     function performSearch(queryKey) {
+      if (queryKey === 'funfacts?') {
+        document.getElementById('chat-modal-overlay').classList.add('active');
+        return;
+      }
+
       const contentArea = document.getElementById('dynamic-content-area');
       const pageResults = document.getElementById('page-results');
       const pageHome = document.getElementById('page1');
@@ -193,6 +204,10 @@
       }
     }
 
+    function closeChatModal() {
+      document.getElementById('chat-modal-overlay').classList.remove('active');
+    }
+
     function goHome() {
       document.getElementById('page-results').classList.remove('active');
       document.getElementById('page1').classList.add('active');
@@ -211,7 +226,9 @@
     document.getElementById('main-search-input').addEventListener('keypress', function (e) {
       if (e.key === 'Enter') {
         const val = this.value.toLowerCase().trim();
-        if (searchDatabase[val]) {
+        if (val === 'funfacts?') {
+          performSearch('funfacts?');
+        } else if (searchDatabase[val]) {
           performSearch(val);
         } else {
           alert('Try clicking one of the pink suggestion chips below!');
