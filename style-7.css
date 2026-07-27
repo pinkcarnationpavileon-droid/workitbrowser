@@ -1,8 +1,10 @@
- :root {
+    :root {
       --gym-dark: rgba(30, 30, 36, 0.92);
       --gym-card: #2a2a32;
       --gym-accent: #ccff00;
-      --gym-accent-hover: #b3e600;
+      --gym-pink: #ff2a85;
+      --gym-pink-hover: #e01b70;
+      --gym-pink-glow: rgba(255, 42, 133, 0.3);
       --gym-text: #f4f4f6;
       --gym-muted: #a0a0ab;
       --gym-border: #3f3f4c;
@@ -17,7 +19,7 @@
     /* Outer Desktop Background Image */
     body {
       font-family: "Gamja Flower", cursive, sans-serif;
-      background-image: url('https://nicegirlslumber.neocities.org/screenshotdesktop.png');
+      background-image: url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1920&q=80');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -174,7 +176,6 @@
       display: block;
     }
 
-    /* Special rule for iframe tab so it fills the full page area without padding issues */
     #page2.page {
       padding: 0;
     }
@@ -235,46 +236,209 @@
       justify-content: center;
     }
 
+    /* PINK SUGGESTION CHIPS STYLING */
     .suggestion-chip {
-      background: var(--gym-card);
-      border: 1px solid var(--gym-border);
+      background: #2d1e27;
+      border: 2px solid var(--gym-pink);
       padding: 10px 18px;
       border-radius: 20px;
       cursor: pointer;
       font-size: 16px;
-      color: var(--gym-text);
-      transition: all 0.2s;
+      color: #ffb3d9;
+      box-shadow: 0 0 10px var(--gym-pink-glow);
+      transition: all 0.2s ease-in-out;
     }
 
     .suggestion-chip:hover {
-      background: var(--gym-accent);
+      background: var(--gym-pink);
       color: #121215;
       font-weight: bold;
       transform: translateY(-2px);
+      box-shadow: 0 0 18px rgba(255, 42, 133, 0.6);
     }
 
-    /* Dynamic Result Card Details */
-    .custom-content {
-      background: var(--gym-card);
-      border: 1px solid var(--gym-border);
-      border-radius: 12px;
-      padding: 25px;
-      max-width: 700px;
-      margin: 0 auto;
-    }
-
+    /* Common Card Back Button */
     .back-btn {
       margin-top: 20px;
-      background: var(--gym-accent);
-      color: #121215;
+      background: var(--gym-pink);
+      color: #ffffff;
       border: none;
-      padding: 8px 20px;
+      padding: 8px 22px;
       border-radius: 20px;
       font-weight: bold;
       font-size: 16px;
       cursor: pointer;
+      box-shadow: 0 0 8px var(--gym-pink-glow);
+      transition: background 0.2s;
     }
 
     .back-btn:hover {
-      background: var(--gym-accent-hover);
+      background: var(--gym-pink-hover);
+    }
+
+    /* CUSTOM DYNAMIC DESIGNS FOR EACH QUERY */
+
+    /* 1. ID CARD DESIGN */
+    .id-card-wrapper {
+      max-width: 480px;
+      margin: 20px auto;
+      background: #1a1a24;
+      border: 3px solid var(--gym-pink);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.6), 0 0 15px var(--gym-pink-glow);
+      position: relative;
+    }
+
+    .id-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px dashed var(--gym-pink);
+      padding-bottom: 12px;
+      margin-bottom: 18px;
+    }
+
+    .id-card-title {
+      font-family: 'Courier Prime', monospace;
+      color: var(--gym-pink);
+      font-size: 20px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .id-card-body {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .id-photo-frame {
+      width: 90px;
+      height: 100px;
+      background: #2b2b36;
+      border: 2px solid var(--gym-pink);
+      border-radius: 8px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 42px;
+      color: #ffb3d9;
+    }
+
+    .id-details {
+      text-align: left;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    .id-details strong {
+      color: var(--gym-pink);
+    }
+
+    /* 2. BULLETIN BOARD DESIGN */
+    .bulletin-board {
+      max-width: 600px;
+      margin: 20px auto;
+      background: #2b1f1a;
+      border: 4px solid #6e473b;
+      border-radius: 12px;
+      padding: 25px;
+      box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.8), 0 8px 20px rgba(0, 0, 0, 0.5);
+      position: relative;
+    }
+
+    .bulletin-title {
+      color: var(--gym-pink);
+      font-size: 26px;
+      margin-bottom: 15px;
+      text-shadow: 0 0 8px var(--gym-pink-glow);
+    }
+
+    .sticky-notes-grid {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .sticky-note {
+      background: #38242e;
+      border: 2px solid var(--gym-pink);
+      color: #ffc2e0;
+      padding: 15px;
+      width: 45%;
+      border-radius: 4px;
+      text-align: left;
+      font-size: 15px;
+      position: relative;
+      box-shadow: 3px 3px 10px rgba(0,0,0,0.5);
+    }
+
+    .sticky-note::before {
+      content: '📌';
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 16px;
+    }
+
+    /* 3. MESSAGES / CHAT DESIGN */
+    .chat-wrapper {
+      max-width: 500px;
+      margin: 20px auto;
+      background: #18181f;
+      border: 2px solid var(--gym-pink);
+      border-radius: 16px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      box-shadow: 0 0 15px var(--gym-pink-glow);
+    }
+
+    .chat-header {
+      font-size: 18px;
+      color: var(--gym-pink);
+      border-bottom: 1px solid var(--gym-border);
+      padding-bottom: 8px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .chat-bubble {
+      max-width: 80%;
+      padding: 12px 16px;
+      border-radius: 18px;
+      font-size: 16px;
+      text-align: left;
+      line-height: 1.4;
+    }
+
+    .chat-incoming {
+      background: #2b2b38;
+      color: var(--gym-text);
+      border-bottom-left-radius: 4px;
+      align-self: flex-start;
+      border: 1px solid var(--gym-border);
+    }
+
+    .chat-outgoing {
+      background: var(--gym-pink);
+      color: #ffffff;
+      border-bottom-right-radius: 4px;
+      align-self: flex-end;
+      font-weight: bold;
+    }
+
+    /* GENERAL SITE INFO CARD */
+    .info-card {
+      max-width: 550px;
+      margin: 20px auto;
+      background: var(--gym-card);
+      border: 2px solid var(--gym-pink);
+      border-radius: 14px;
+      padding: 25px;
+      box-shadow: 0 0 15px var(--gym-pink-glow);
     }
