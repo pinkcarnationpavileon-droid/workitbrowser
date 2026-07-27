@@ -8,8 +8,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Courier+Prime:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -69,7 +68,7 @@
       </div>
 
       <div id="page-results" class="page">
-        <div id="dynamic-content-area" class="custom-content"></div>
+        <div id="dynamic-content-area"></div>
       </div>
 
     </article>
@@ -103,32 +102,69 @@
 
     const searchDatabase = {
       'who are you?': `
-        <h2>Who am I?</h2>
-        <p style="margin-top: 10px;">I am a <strong>gym-powered webmaster</strong> built entirely with HTML, CSS, and JavaScript.</p>
-        <p style="margin-top: 10px;">I run completely offline inside this custom browser frame!</p>
-        <button class="back-btn" onclick="goHome()">Back to Search</button>
+        <div class="id-card-wrapper">
+          <div class="id-card-header">
+            <span class="id-card-title">MEMBER ID CARD</span>
+            <span style="color: var(--gym-pink);">● ACCESS GRANTED</span>
+          </div>
+          <div class="id-card-body">
+            <div class="id-photo-frame">
+              <i class="fa-solid fa-user-ninja"></i>
+            </div>
+            <div class="id-details">
+              <p><strong>NAME:</strong> Gym Webmaster</p>
+              <p><strong>ROLE:</strong> System Architect</p>
+              <p><strong>STATUS:</strong> Online (Offline Engine)</p>
+              <p><strong>STATS:</strong> 100% Client-Side Pure HTML/JS</p>
+            </div>
+          </div>
+          <button class="back-btn" onclick="goHome()">Back to Search</button>
+        </div>
       `,
       'whats this site?': `
-        <h2>What's this site?</h2>
-        <p style="margin-top: 10px;">This is <strong>Work It Browser</strong> — a custom simulated desktop browser designed with a gym theme, interactive tab navigation, and embedded web browsing capability.</p>
-        <button class="back-btn" onclick="goHome()">Back to Search</button>
+        <div class="info-card">
+          <h2 style="color: var(--gym-pink);">What's this site?</h2>
+          <p style="margin-top: 12px; line-height: 1.6;">This is <strong>Work It Browser</strong> — a custom interactive browser shell with custom tab handling, embed support, dynamic query chips, and neon-styled components!</p>
+          <button class="back-btn" onclick="goHome()">Back to Search</button>
+        </div>
       `,
       'latest updates?': `
-        <h2>Latest Updates</h2>
-        <ul style="margin-top: 10px; padding-left: 20px; line-height: 1.6;">
-          <li>Embedded active Neocities browse iframe directly into Tab 2.</li>
-          <li>Updated address bar to reflect external URLs when navigating pages.</li>
-          <li>Cleaned up taskbar for a dedicated browser application experience.</li>
-        </ul>
-        <button class="back-btn" onclick="goHome()">Back to Search</button>
+        <div class="bulletin-board">
+          <h2 class="bulletin-title">📌 LATEST UPDATES BOARD</h2>
+          <div class="sticky-notes-grid">
+            <div class="sticky-note">
+              <strong>Pink Neon Theme:</strong> Inquiry query chips updated with glowing pink styles.
+            </div>
+            <div class="sticky-note">
+              <strong>Interactive ID:</strong> Built 'Who Are You' chip formatted as a digital ID Badge.
+            </div>
+            <div class="sticky-note">
+              <strong>Chat Bubbles:</strong> Fun facts transformed into a conversation thread!
+            </div>
+            <div class="sticky-note">
+              <strong>Iframe Active:</strong> Neocities tab live and frame-ready.
+            </div>
+          </div>
+          <button class="back-btn" onclick="goHome()">Back to Search</button>
+        </div>
       `,
       'funfacts?': `
-        <h2>Fun Facts!</h2>
-        <ul style="margin-top: 10px; padding-left: 20px; line-height: 1.6;">
-          <li>Dumbbells were originally used in ancient Greece as jumping weights called 'halteres'.</li>
-          <li>Working out boosts brain endorphins and helps code execute 100% faster (probably)!</li>
-        </ul>
-        <button class="back-btn" onclick="goHome()">Back to Search</button>
+        <div class="chat-wrapper">
+          <div class="chat-header">💬 Chat with Gym Bot</div>
+          <div class="chat-incoming">
+            Hey! Got any cool fun facts for me? 🤔
+          </div>
+          <div class="chat-outgoing">
+            Sure! Dumbbells were originally used in ancient Greece as jumping weights called 'halteres'! 🏋️‍♂️
+          </div>
+          <div class="chat-incoming">
+            Whoa, really? Give me another!
+          </div>
+          <div class="chat-outgoing">
+            Doing workouts releases endorphins that increase coding productivity by at least 100%! ⚡
+          </div>
+          <button class="back-btn" onclick="goHome()">Back to Search</button>
+        </div>
       `
     };
 
@@ -146,7 +182,12 @@
         pageResults.classList.add('active');
         urlDisplay.value = `workit://search/${encodeURIComponent(queryKey)}`;
       } else {
-        contentArea.innerHTML = `<h2>Not Found</h2><p style="margin-top:10px;">No workout records found for "${queryKey}"</p><button class="back-btn" onclick="goHome()">Back</button>`;
+        contentArea.innerHTML = `
+          <div class="info-card">
+            <h2>Not Found</h2>
+            <p style="margin-top:10px;">No workout records found for "${queryKey}"</p>
+            <button class="back-btn" onclick="goHome()">Back</button>
+          </div>`;
         pageHome.classList.remove('active');
         pageResults.classList.add('active');
       }
@@ -173,7 +214,7 @@
         if (searchDatabase[val]) {
           performSearch(val);
         } else {
-          alert('Try clicking one of the suggested query chips below!');
+          alert('Try clicking one of the pink suggestion chips below!');
         }
       }
     });
