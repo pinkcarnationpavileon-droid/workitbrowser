@@ -546,6 +546,7 @@
       line-height: 1.4;
       text-align: left;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+      word-break: break-word;
     }
 
     .chat-incoming {
@@ -571,14 +572,19 @@
       gap: 10px;
     }
 
-    .chat-input-fake {
+    .chat-input-field {
       flex: 1;
       background: #fff0f5;
       border: 1px solid #ffb6c1;
       border-radius: 20px;
       padding: 10px 16px;
       color: #d81b60;
-      font-size: 13px;
+      font-size: 14px;
+      outline: none;
+    }
+
+    .chat-input-field::placeholder {
+      color: #ff8da1;
     }
 
     .send-btn {
@@ -592,4 +598,9 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      transition: background 0.2s;
+    }
+
+    .send-btn:hover {
+      background: #e01b70;
     }
